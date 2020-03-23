@@ -1,0 +1,4 @@
+/QueryLanguage/build/
+/QueryLanguage/.gradle/
+/QueryLanguage/.nb-gradle/
+/QueryLanguage/*.tmp
