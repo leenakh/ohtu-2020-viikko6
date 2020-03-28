@@ -19,9 +19,10 @@ public class Main {
         Matcher a = new All();
         Matcher n = new Not(new PlaysIn("WPG"), new HasAtLeast(1, "goals"));
         Matcher nyr = new And(new Not(new HasAtLeast(1, "goals")), new PlaysIn("NYR"));
-        Matcher f = new And(new PlaysIn("NYR"), new HasFewerThan(1, "goals"));
+        Matcher f = new And(new PlaysIn("NYR"), new HasFewerThan(1, "assists"));
+        Matcher o = new And(new HasAtLeast(20, "points"), new Or(new PlaysIn("NYR"), new PlaysIn("NYI"), new PlaysIn("NJD")));
         
-        for (Player player : stats.matches(f)) {
+        for (Player player : stats.matches(o)) {
             System.out.println(player);
         }
     }
