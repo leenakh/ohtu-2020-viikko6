@@ -5,7 +5,7 @@ import statistics.matcher.*;
 public class Main {
     public static void main(String[] args) {
         // seuraavassa osoitteessa 27.11.2019 päivitetyt tilastot
-        String url = "https://nhl27112019.herokuapp.com/players.txt"
+        String url = "https://nhl27112019.herokuapp.com/players.txt";
         // ajan tasalla olevat tilastot osoitteessa
         // "https://nhlstatisticsforohtu.herokuapp.com/players.txt"
 
@@ -16,7 +16,12 @@ public class Main {
                              new PlaysIn("PHI")
         );
         
-        for (Player player : stats.matches(m)) {
+        Matcher a = new All();
+        Matcher n = new Not(new PlaysIn("WPG"), new HasAtLeast(1, "goals"));
+        Matcher nyr = new And(new Not(new HasAtLeast(1, "goals")), new PlaysIn("NYR"));
+        Matcher f = new And(new PlaysIn("NYR"), new HasFewerThan(1, "goals"));
+        
+        for (Player player : stats.matches(f)) {
             System.out.println(player);
         }
     }
