@@ -22,7 +22,12 @@ public class Main {
         Matcher f = new And(new PlaysIn("NYR"), new HasFewerThan(1, "assists"));
         Matcher o = new And(new HasAtLeast(20, "points"), new Or(new PlaysIn("NYR"), new PlaysIn("NYI"), new PlaysIn("NJD")));
         
-        for (Player player : stats.matches(o)) {
+        QueryBuilder query = new QueryBuilder();
+        Matcher newAll = query.build();
+        Matcher newNYR = query.playsIn("NYR").build();
+        Matcher newCombo = query.playsIn("NYR").hasAtLeast(5, "goals").hasFewerThan(10, "goals").build();
+        
+        for (Player player : stats.matches(newCombo)) {
             System.out.println(player);
         }
     }
